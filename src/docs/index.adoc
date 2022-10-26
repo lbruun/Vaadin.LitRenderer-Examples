@@ -33,8 +33,8 @@ Therefore: Read Vaadin's documentation first:
 
 * https://vaadin.com/docs/latest/components/grid/#lit-renderer[Vaadin Docs on LitRenderer]
 * https://vaadin.com/docs/latest/components/grid/flow#using-lit-renderers[Vaadin Docs on LitRenderer (Flow)]
-* https://vaadin.com/api/platform/current/com/vaadin/flow/data/renderer/LitRenderer.html[Javadoc on LitRenderer - a few code examples are in there]
-* https://cookbook.vaadin.com/[Vaadin Cookbook (e.g. search for 'renderer']
+* https://vaadin.com/api/platform/current/com/vaadin/flow/data/renderer/LitRenderer.html[Javadoc on LitRenderer (a few code examples are in there)]
+* https://cookbook.vaadin.com/[Vaadin Cookbook (e.g. search for 'renderer')]
 
 The examples in this document have been created with Vaadin 23.
 
