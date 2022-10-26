@@ -1,0 +1,29 @@
+name: build adocs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+jobs:
+  adoc_build:
+    runs-on: ubuntu-latest
+    name: asciidoctor build
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Create output dir
+      run: mkdir ./build
+    - name: Execute asciidoctor
+      id: adocbuild
+      uses: tonynv/asciidoctor-action@master
+      with:
+          program: "asciidoctor -D build --backend=html5 -o index.html src/docs/index.adoc"
+    - name: Include images
+      run: cp -r src/docs/images ./build
+    - name: Deploy docs to ghpages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_branch: gh-pages
+        publish_dir: ./build

@@ -1,0 +1,434 @@
+= Vaadin LitRenderer examples
+:source-highlighter: rouge
+:toc:
+:toc-placement!:
+:icons: font
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:imagesdir: images
+
+++++
+<style>
+html { font-size: 80%; }
+#content, #header { max-width: 80em; }
+.sect1 { margin-top: 3em; }
+h3 { margin-top: 1.7em}
+</style>
+++++
+
+toc::[]
+
+== Why this guide?
+
+In Vaadin you can do everything with Java and you do not have to know about HTML or CSS. Well, that is almost true. If you use for example https://vaadin.com/docs/latest/components/grid[Vaadin Grid] then you'll soon want to put buttons or icons into that grid. The way to do that is by using https://vaadin.com/api/platform/current/com/vaadin/flow/data/renderer/LitRenderer.html[LitRenderers] and Vaadin's documentation does a great job
+of describing why they are superior to https://vaadin.com/api/platform/current/com/vaadin/flow/data/renderer/ComponentRenderer.html[ComponentRenderers] from performance point of view.
+
+However, the problem with LitRenderers is that you need to construct the HTML yourself while Vaadin Flow is all about _not_ having to do that.
+
+This guide is intended to complement (not duplicate) Vaadin's own documentation. It contains recipies which I could not find in Vaadin's documentation .. or at least could not find easily. You are not supposed to be able to read this guide on its own as it doesn't explain the concepts already described in Vaadin's own documentation. For example, you should already be familiar with the concept of https://vaadin.com/docs/latest/components/grid/flow/#handling-events[event handling] in LitRenderer.
+
+
+== Quick recipies
+
+=== Create an icon button
+
+Creating a button with an icon in it: See <<Icons>>.
+
+=== Create an icon button group
+
+Creating an array of icon buttons: See <<button-icon-groups>>
+
+=== Create simple tooltips on an icon button
+
+If you are like most people you will want to knnow what a button does before clicking on it.
+This is where tooltips helps. See <<simple-tooltip>>.
+
+=== Create links inside the Grid (e.g. for drill-down)
+
+See <<links-in-grid>>.
+
+
+
+
+== Icons
+
+=== Vaadin and Lumo icons
+
+Vaadin and Lumo icons must use an empty `<vaadin-icon>` element to render the icon, like this:
+
+[source,html]
+----
+<vaadin-icon icon="vaadin:star"></vaadin-icon>
+----
+
+or 
+
+[source,html]
+----
+<vaadin-icon icon="lumo:clock"></vaadin-icon>
+----
+
+
+
+As a whole, a LitRenderer html template with an icon button with a car from the Vaadin icon set,
+would look like this:
+
+[cols="10,1,1",frame=none,grid=none]
+|===
+
+a|
+[source,html]
+----
+<vaadin-button title="Order a taxi" theme="icon small" @click="${orderTaxi}">
+    <vaadin-icon icon="vaadin:car"></vaadin-icon>
+</vaadin-button>
+----
+a|image::right-arrow.png[]
+a|image::car-icon-button.png[]
+|===
+
+
+
+=== Font icons
+
+Font icons typically use an empty `<span>` element to render the icon, like this:
+
+[source,html]
+----
+<span class="la la-pen"></span>
+----
+
+Alternatively, some developers use an empty `<i>` tag for the same purpose. 
+You can find heated debates on the Internet about which tag is most suitable. Vaadin 
+recommends the `<span>` element so that is what we use here.
+
+As a whole, a LitRenderer html template with an icon button with a pen would look like
+this:
+
+
+[cols="10,1,1",frame=none,grid=none]
+|===
+a|
+[source,html]
+----
+<vaadin-button title="Edit person" theme="icon small" @click="${editTheItem}">
+    <span class="la la-pen"></span>
+</vaadin-button>
+----
+a|image::right-arrow.png[]
+a|image::pen-icon-button.png[]
+|===
+
+
+
+[#button-icon-groups]
+== Icon button groups (multiple icon buttons in a cell)
+
+Using multiple icons in a cell is common for "action buttons". The following Lit template will render 3 icons in a single cell:
+
+[cols="10,1,3",frame=none,grid=none]
+|===
+a|[source,html]
+----
+<vaadin-horizontal-layout theme="spacing-xs" style="align-items: center;"> <!--1-->
+    <vaadin-button title="Edit person" theme="icon small" @click="${editTheItem}">
+        <span class="la la-pen"></span>
+    </vaadin-button>
+    <vaadin-button title="Delete person" theme="icon small" @click="${removeTheItem}">
+        <span class="la la-trash"></span>
+    </vaadin-button>
+    <vaadin-button title="Star person" theme="icon small" @click="${starTheItem}">
+        <vaadin-icon icon="vaadin:star"></vaadin-icon>
+    </vaadin-button>
+</vaadin-horizontal-layout>
+----
+<1> Enclose the button icons in an `<vaadin-horizontal-layout>`. This allows to align the icons on the horizontal axis and it allows to <<button-icon-spacing,put some space between the button icons>>.
+.^a|image::right-arrow.png[]
+.^a|image::icon-button-group.png[]
+|===
+
+
+When put into a Grid using a LitRenderer, it will look like this:
+
+image::https://user-images.githubusercontent.com/32431476/197521975-02ce4ad1-6718-40d8-84d4-817a6437998b.png[img1]
+
+{nbsp} +
+
+WARNING: The above example mixes icons from different icon sets (Vaadin icons and Line Awesome icons). For aesthetics this is rarely a good idea. If you look closely you'll notice that the star icon (from Vaadin collection) is slightly wider than the other icons.
+
+[#button-icon-spacing]
+### Spacing between icon buttons
+
+First of all you will need to wrap your `<vaadin-button>` buttons in a `<vaadin-horizontal-layout>` so that you
+create a horizontal button array. For actually setting the spacing, you have two options:
+
+* Using a Vaadin Lumo preset value for `theme`. Example:
+
+[source,html]
+----
+<vaadin-horizontal-layout style="align-items: center;" theme="spacing-xs">
+  <!-- icon buttons here -->
+</vaadin-horizontal-layout>
+----
+
+You can use any of the following values: 
+`spacing-xs` (extra small), `spacing-s` (small), `spacing-m` (medium), `spacing-l` (large) and `spacing-xl` (extra large). However, only `spacing-xs` really looks good. These presets were not made with button icons in mind which explains why they are less useful in this context.
+
+
+* Using explicit styling with the `column-gap` CSS property. Example:
+
+[source,html]
+----
+<vaadin-horizontal-layout style="align-items: center; column-gap: 0.3rem;">
+  <!-- icon buttons here -->
+</vaadin-horizontal-layout>
+----
+
+
+
+
+[#simple-tooltip]
+## Simple tooltip
+
+You can use the html `title` attribute for simple tooltips on your icon buttons.
+The `title` attribute is a native html feature, it has nothing to do with Vaadin. As a poor man's tooltip, it does the job.
+
+The value of the `title` attribute isn't interpreted as HTML by the browser, rather it is displayed as-is. However, linefeeds are allowed and must be represented by a `\&#10;`. 
+
+Here is an example:
+
+[source,html]
+----
+<vaadin-button title="Add to favorites.&#10;&#10;The person will be added in your Favorites folder under &#34;Buddies&#34;" 
+               theme="icon small" @click="${starTheItem}">
+        <vaadin-icon icon="vaadin:star"></vaadin-icon>
+</vaadin-button>
+----
+
+which in a Grid will look something like this:
+
+image::button-with-tooltip.png[Grid example]
+
+WARNING: Do not use more than 1-3 lines of text for a `title` tooltip. In most cases a single word will be enough. If you have a need for something more elaborate then have a look at the Tooltip feature introduced in Vaadin 23.3.
+
+{nbsp} +
+
+By the way: The same trick can be used with pure-Java buttons, like this:
+
+[source,java]
+----
+Button myButton = new Button(new Icon("lumo", "search"));
+myButton.addThemeVariants(ButtonVariant.LUMO_ICON);
+myButton.getElement().setAttribute("title", "Search for music");
+----
+
+
+
+
+[#links-in-grid]
+## Drill-down links in Grid
+
+Suppose you want to have clickable links inside a grid, perhaps as a way to navigate from one Grid to another.
+Like this:
+
+image::clickable-link.png[]
+
+The way to do this is to use the `<a>` tag but with an empty `href`, like this:
+
+[source,java]
+----
+grid.addColumn(
+        LitRenderer.<Person>of(
+                    """
+                    <a href="#" @click="${clickHandler}">
+                        <u>${item.id}</u>
+                    </a>
+                    """
+                )
+                .withProperty("id", Person::getId)
+                .withFunction("clickHandler", person -> {
+                    Notification.show("Link was clicked for Person #" + person.getId());
+                })
+    ).setHeader("Id");
+----
+
+The `href="#"` ensures that our link is a no-op from the point of view of the HTML. It is the click handler which does the job.
+
+
+
+## Templating the template (Internationalization)
+
+If you load text strings from resource bundles and those text strings are needed in the Lit html templates, for example as the caption for buttons
+or as the `title` attribute value, then you'll soon find the urge to use a template engine to make your code easier to read.
+This will then be _double templating_ (ouch!). I propose https://commons.apache.org/proper/commons-text/[Apache Commons Text] for this purpose
+as it has a handy class https://commons.apache.org/proper/commons-text/apidocs/org/apache/commons/text/StringSubstitutor.html[StringSubstitutor] which
+is a simple templating engine.
+
+Below is an example where the Lit html template it first passed through a `StringSubstitutor` and tooltip values
+are loaded from an I18NProvider.
+
+[source,java]
+----
+@PageTitle("Persons")
+@Route(value = "persons")
+public class TemplatingTheTemplateExample extends VerticalLayout {
+
+    private static final String I18N_PREFIX = "personsview.";
+
+    private static final String BUTTON_ICONS_TEMPLATE = """ <1>
+            <vaadin-horizontal-layout theme="spacing-xs" style="align-items: center;">
+                <vaadin-button title="$((title.button.edit:-Edit))" theme="icon small" @click="${editTheItem}"> <2>
+                    <span class="la la-pen"></span>
+                </vaadin-button>
+                <vaadin-button title="$((title.button.delete:-Delete))" theme="icon small" @click="${removeTheItem}">
+                    <span class="la la-trash"></span>
+                </vaadin-button>
+                <vaadin-button title="$((title.button.star:-Add to favorites))" theme="icon small" @click="${starTheItem}">
+                    <vaadin-icon icon="vaadin:star"></vaadin-icon>
+                </vaadin-button>
+            </vaadin-horizontal-layout>
+                            """;
+
+    public TemplatingTheTemplateExample() {
+
+        StringSubstitutor stringSubstitutor =
+                new StringSubstitutor(new InternationalStringLookup(), "$((", "))", '$'); <3>
+
+        Grid<Person> grid = new Grid<>();
+        List<Person> personList = getPersonData();
+
+
+        // Add columns
+        grid.addColumn(Person::getId).setHeader("Id");
+
+        grid.addColumn(
+                LitRenderer.<Person>of(stringSubstitutor.replace(BUTTON_ICONS_TEMPLATE))
+                        .withFunction("editTheItem", person -> {
+                            Notification.show("Editing Person #" + person.getId());
+                        })
+                        .withFunction("removeTheItem", person -> {
+                            Notification.show("Deleting Person #" + person.getId());
+                        })
+                        .withFunction("starTheItem", person -> {
+                            Notification.show("Starring Person #" + person.getId());
+                        })
+        ).setResizable(false).setAutoWidth(true).setFlexGrow(0);
+
+        grid.addColumn(Person::getName).setHeader("Name");
+        grid.addColumn(Person::getEmail).setHeader("E-Mail");
+        grid.addColumn(Person::getBirthday).setHeader("Birthday");
+        
+        // Finalize and display
+        grid.setItems(personList);
+        add(grid);
+    }
+
+    /**
+     * Sanitizes the value used for 'title' attribute on a html element.
+     */
+    private String sanitizeTitle(String unsanitizedTitle) {
+        return unsanitizedTitle
+                .replace("\n", "&#10;") <4>
+                .replace("\"", "&#34;");
+    }
+
+    /**
+     * String provider for Apache Commons Text 'StringSubstitutor'.
+     */
+    private class InternationalStringLookup implements StringLookup {
+
+        @Override
+        public String lookup(String key) {
+            String absoluteKey = I18N_PREFIX + key;
+            String translation = getTranslation(absoluteKey);
+            return absoluteKey.startsWith(I18N_PREFIX + "title")
+                    ? sanitizeTitle(translation) : translation;
+        }
+    }
+
+    private List<Person> getPersonData() { // irelevant to the example
+       ...
+    }
+}
+----
+<1> HTML template used for Apache Commons Text `StringSubstitor` and eventually by Lit also. Since it is used
+by both we have to make sure the syntax for the two do not clash.
+<2> We provide default values by using `:-` syntax. However, because of the way that Vaadin's I18NProvider works
+(it never returns a null value), these defaults will unfortunately never have any effect.
+<3> StringSubstitor which uses `$++((foobar))++` syntax for replacement variables. The default would be `${foobar}`
+syntax but this is exactly what Lit uses too, so we have to use something else.
+<4> Since our values come from a resource bundle file, we need to sanitize a bit.
+
+With the above example, we can use resource bundle files like the ones below:
+
+`translate_en_GB.properties` file:
+
+[source,properties]
+----
+personsview.title.button.edit = Edit
+personsview.title.button.delete = Delete
+personsview.title.button.star = Add to favourites.\n\nThe person will be added under "Mates".
+----
+
+
+`translate_en_US.properties` file:
+
+[source,properties]
+----
+personsview.title.button.edit = Edit
+personsview.title.button.delete = Remove
+personsview.title.button.star = Add to favorites.\n\nThe person will be added under "Buddies".
+----
+
+
+
+
+
+## Recommendations
+
+### Use Java 17
+
+By using Java 17 (or later) you can put your LitRenderer html text into a https://docs.oracle.com/en/java/javase/17/text-blocks/index.html[text block]. 
+It will be much easier to read that way, in particular because you won't have to escape the quotes.
+
+### Explicit closing tags in HTML
+
+Always use explicit closing tags, even for empty elements. If you come from the world of XML then you may be
+tempted to do:
+
+[source,html]
+----
+<vaadin-icon icon="vaadin:star"/>
+----
+
+instead of
+
+[source,html]
+----
+<vaadin-icon icon="vaadin:star"></vaadin-icon>
+----
+
+Don't do that. While it may work, it is not valid HTML.
+
+
+### Function name uniqueness
+
+Don't overthink the name of the function as in `@click="${editItem}"`. It only needs to be unique within the
+given LitRenderer. This is because Vaadin automatically (behind your back) prefixes each LitRenderer with a unique ID.
+
+### Consider HTML injection attacks
+
+With dynamic Lit templates you need to be careful with where values for the template come from. 
+They may need to be sanitized first to avoid the possibility of harmful HTML injection attacks.
+With Spring Boot, you already have Spring's https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/util/HtmlUtils.html[HtmlUtils] on your classpath. It can be used like this:
+
+
+[source,java]
+----
+String safeTxt = HtmlUtils.htmlEscape(unsafeTxt, "UTF-8");
+----
+
+You can now use `safeTxt` safely in your Lit html template.
