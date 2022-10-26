@@ -41,7 +41,7 @@ Creating a button with an icon in it: See <<Icons>>.
 
 Creating an array of icon buttons: See <<button-icon-groups>>
 
-=== Create simple tooltips on an icon button
+=== Create simple tooltip on an icon button
 
 If you are like most people you will want to knnow what a button does before clicking on it.
 This is where tooltips helps. See <<simple-tooltip>>.
