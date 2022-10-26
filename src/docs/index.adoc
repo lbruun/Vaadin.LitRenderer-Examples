@@ -30,8 +30,10 @@ However, the problem with LitRenderers is that you need to construct the HTML yo
 
 This guide is intended to complement (not duplicate) Vaadin's own documentation. It contains recipies which I could not find in Vaadin's documentation .. or at least could not find easily. You are not supposed to be able to read this guide on its own as it doesn't explain the concepts already described in Vaadin's own documentation. For example, you should already be familiar with the concept of https://vaadin.com/docs/latest/components/grid/flow/#handling-events[event handling] in LitRenderer.
 
+The examples have been created with Vaadin 23.
 
-== Quick recipies
+
+== Quick recipes
 
 === Create an icon button
 
@@ -43,7 +45,7 @@ Creating an array of icon buttons: See <<button-icon-groups>>
 
 === Create simple tooltip on an icon button
 
-If you are like most people you will want to knnow what a button does before clicking on it.
+If you are like most people you will want to know what a button does before clicking on it.
 This is where tooltips helps. See <<simple-tooltip>>.
 
 === Create links inside the Grid (e.g. for drill-down)
@@ -358,7 +360,7 @@ public class TemplatingTheTemplateExample extends VerticalLayout {
 by both we have to make sure the syntax for the two do not clash.
 <2> We provide default values by using `:-` syntax. However, because of the way that Vaadin's I18NProvider works
 (it never returns a null value), these defaults will unfortunately never have any effect.
-<3> StringSubstitor which uses `$++((foobar))++` syntax for replacement variables. The default would be `${foobar}`
+<3> StringSubstitutor which uses `$++((foobar))++` syntax for replacement variables. The default would be `${foobar}`
 syntax but this is exactly what Lit uses too, so we have to use something else.
 <4> Since our values come from a resource bundle file, we need to sanitize a bit.
 
