@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.lbruun.vaadin.addons.litrenderer.examples</groupId>
+    <groupId>org.vaadin.addons.litrenderer.examples</groupId>
     <artifactId>nothing</artifactId>
-    <version>1.0.0</version>
-    <name>Vaadin LitRenderer examples</name>
+    <version>1.0.1</version>
+    <name>LitRenderer cookbook</name>
     <description>Documentation for LitRenderer</description>
 
     <properties>
