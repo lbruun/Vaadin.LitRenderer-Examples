@@ -29,9 +29,14 @@ of describing why they are superior to https://vaadin.com/api/platform/current/c
 However, the problem with LitRenderers is that you need to construct the HTML yourself while Vaadin Flow is all about _not_ having to do that.
 
 This guide is intended to complement (not duplicate) Vaadin's own documentation. It contains recipes which I could not find in Vaadin's documentation .. or at least could not find easily. You are not supposed to be able to read this guide on its own as it doesn't explain the concepts already described in Vaadin's own documentation. For example, you should already be familiar with the concept of https://vaadin.com/docs/latest/components/grid/flow/#handling-events[event handling] in LitRenderer.
-Therefore: Read Vaadin's documentation first.
+Therefore: Read Vaadin's documentation first:
 
-The examples have been created with Vaadin 23.
+* https://vaadin.com/docs/latest/components/grid/#lit-renderer[Vaadin Docs on LitRenderer]
+* https://vaadin.com/docs/latest/components/grid/flow#using-lit-renderers[Vaadin Docs on LitRenderer (Flow)]
+* https://vaadin.com/api/platform/current/com/vaadin/flow/data/renderer/LitRenderer.html[Javadoc on LitRenderer - a few code examples are in there]
+* https://cookbook.vaadin.com/[Vaadin Cookbook (e.g. search for 'renderer']
+
+The examples in this document have been created with Vaadin 23.
 
 
 == Quick recipes
