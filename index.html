@@ -1055,17 +1055,17 @@ Like this:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The way to do this is to use the <code>&lt;a&gt;</code> tag but with an empty <code>href</code>, like this:</p>
+<p>Here is how to do it with <code>&lt;vaadin-button&gt;</code>, styled so that it looks like a link.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="n">grid</span><span class="o">.</span><span class="na">addColumn</span><span class="o">(</span>
         <span class="nc">LitRenderer</span><span class="o">.&lt;</span><span class="nc">Person</span><span class="o">&gt;</span><span class="n">of</span><span class="o">(</span>
                     <span class="s">"""
-                    &lt;a href="</span><span class="err">#</span><span class="s">" @click="</span><span class="err">$</span><span class="o">{</span><span class="n">clickHandler</span><span class="o">}</span><span class="s">"&gt;
-                        &lt;u&gt;${item.id}&lt;/u&gt;
-                    &lt;/a&gt;
-                    """</span>
+                    &lt;vaadin-button title="</span><span class="nc">Go</span> <span class="n">to</span> <span class="o">...</span><span class="s">" theme="</span><span class="n">tertiary</span><span class="o">-</span><span class="n">inline</span> <span class="n">small</span><span class="s">"
+                                   @click="</span><span class="err">$</span><span class="o">{</span><span class="n">clickHandler</span><span class="o">}</span><span class="s">"&gt;
+                        &lt;span style="</span><span class="n">text</span><span class="o">-</span><span class="nl">decoration:</span> <span class="n">underline</span><span class="o">;</span> <span class="nl">cursor:</span> <span class="n">pointer</span><span class="o">;</span><span class="s">"&gt;${item.id}&lt;/span&gt;
+                    &lt;/vaadin-button&gt;"""</span>
                 <span class="o">)</span>
                 <span class="o">.</span><span class="na">withProperty</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="nl">Person:</span><span class="o">:</span><span class="n">getId</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">withFunction</span><span class="o">(</span><span class="s">"clickHandler"</span><span class="o">,</span> <span class="n">person</span> <span class="o">-&gt;</span> <span class="o">{</span>
@@ -1073,9 +1073,6 @@ Like this:</p>
                 <span class="o">})</span>
     <span class="o">).</span><span class="na">setHeader</span><span class="o">(</span><span class="s">"Id"</span><span class="o">);</span></code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The <code>href="#"</code> ensures that our link is a no-op from the point of view of the HTML. It is the click handler which does the job.</p>
 </div>
 </div>
 </div>
@@ -1287,7 +1284,7 @@ With Spring Boot, you already have Spring&#8217;s <a href="https://docs.spring.i
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-10-26 21:53:23 UTC
+Last updated 2022-10-27 13:08:51 UTC
 </div>
 </div>
 </body>
