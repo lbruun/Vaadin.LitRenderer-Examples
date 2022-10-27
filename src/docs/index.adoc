@@ -244,17 +244,17 @@ Like this:
 
 image::clickable-link.png[]
 
-The way to do this is to use the `<a>` tag but with an empty `href`, like this:
+Here is how to do it with `<vaadin-button>`, styled so that it looks like a link.
 
 [source,java]
 ----
 grid.addColumn(
         LitRenderer.<Person>of(
                     """
-                    <a href="#" @click="${clickHandler}">
-                        <u>${item.id}</u>
-                    </a>
-                    """
+                    <vaadin-button title="Go to ..." theme="tertiary-inline small"
+                                   @click="${clickHandler}">
+                        <span style="text-decoration: underline; cursor: pointer;">${item.id}</span>
+                    </vaadin-button>"""
                 )
                 .withProperty("id", Person::getId)
                 .withFunction("clickHandler", person -> {
@@ -263,7 +263,6 @@ grid.addColumn(
     ).setHeader("Id");
 ----
 
-The `href="#"` ensures that our link is a no-op from the point of view of the HTML. It is the click handler which does the job.
 
 
 
