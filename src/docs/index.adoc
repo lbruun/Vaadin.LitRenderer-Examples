@@ -287,13 +287,13 @@ public class TemplatingTheTemplateExample extends VerticalLayout {
 
     private static final String BUTTON_ICONS_TEMPLATE = """ <1>
             <vaadin-horizontal-layout theme="spacing-xs" style="align-items: center;">
-                <vaadin-button title="$((title.button.edit:-Edit))" theme="icon small" @click="${editTheItem}"> <2>
+                <vaadin-button title="$((button.edit.title:-Edit))" theme="icon small" @click="${editTheItem}"> <2>
                     <span class="la la-pen"></span>
                 </vaadin-button>
-                <vaadin-button title="$((title.button.delete:-Delete))" theme="icon small" @click="${removeTheItem}">
+                <vaadin-button title="$((button.delete.title:-Delete))" theme="icon small" @click="${removeTheItem}">
                     <span class="la la-trash"></span>
                 </vaadin-button>
-                <vaadin-button title="$((title.button.star:-Add to favorites))" theme="icon small" @click="${starTheItem}">
+                <vaadin-button title="$((button.star.title:-Add to favorites))" theme="icon small" @click="${starTheItem}">
                     <vaadin-icon icon="vaadin:star"></vaadin-icon>
                 </vaadin-button>
             </vaadin-horizontal-layout>
@@ -375,9 +375,9 @@ With the above example, we can use resource bundle files like the ones below:
 
 [source,properties]
 ----
-personsview.title.button.edit = Edit
-personsview.title.button.delete = Delete
-personsview.title.button.star = Add to favourites.\n\nThe person will be added under "Mates".
+personsview.button.edit.title = Edit
+personsview.button.delete.title = Delete
+personsview.button.star.title = Add to favourites.\n\nThe person will be added under "Mates".
 ----
 
 
@@ -385,9 +385,9 @@ personsview.title.button.star = Add to favourites.\n\nThe person will be added u
 
 [source,properties]
 ----
-personsview.title.button.edit = Edit
-personsview.title.button.delete = Remove
-personsview.title.button.star = Add to favorites.\n\nThe person will be added under "Buddies".
+personsview.button.edit.title = Edit
+personsview.button.delete.title = Remove
+personsview.button.star.title = Add to favorites.\n\nThe person will be added under "Buddies".
 ----
 
 
