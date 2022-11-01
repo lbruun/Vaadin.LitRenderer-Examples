@@ -281,7 +281,7 @@ are loaded from an I18NProvider.
 ----
 @PageTitle("Persons")
 @Route(value = "persons")
-public class TemplatingTheTemplateExample extends VerticalLayout {
+public class PersonsView extends VerticalLayout {
 
     private static final String I18N_PREFIX = "personsview.";
 
@@ -299,7 +299,7 @@ public class TemplatingTheTemplateExample extends VerticalLayout {
             </vaadin-horizontal-layout>
                             """;
 
-    public TemplatingTheTemplateExample() {
+    public PersonsView() {
 
         StringSubstitutor stringSubstitutor =
                 new StringSubstitutor(new InternationalStringLookup(), "$((", "))", '$'); <3>
