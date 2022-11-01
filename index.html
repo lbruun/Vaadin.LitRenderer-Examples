@@ -1100,13 +1100,13 @@ are loaded from an I18NProvider.</p>
 
     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">BUTTON_ICONS_TEMPLATE</span> <span class="o">=</span> <span class="s">""" <i class="conum" data-value="1"></i><b>(1)</b>
             &lt;vaadin-horizontal-layout theme="</span><span class="n">spacing</span><span class="o">-</span><span class="n">xs</span><span class="s">" style="</span><span class="n">align</span><span class="o">-</span><span class="nl">items:</span> <span class="n">center</span><span class="o">;</span><span class="s">"&gt;
-                &lt;vaadin-button title="</span><span class="err">$</span><span class="o">((</span><span class="n">title</span><span class="o">.</span><span class="na">button</span><span class="o">.</span><span class="na">edit</span><span class="o">:-</span><span class="nc">Edit</span><span class="o">))</span><span class="s">" theme="</span><span class="n">icon</span> <span class="n">small</span><span class="s">" @click="</span><span class="err">$</span><span class="o">{</span><span class="n">editTheItem</span><span class="o">}</span><span class="s">"&gt; <i class="conum" data-value="2"></i><b>(2)</b>
+                &lt;vaadin-button title="</span><span class="err">$</span><span class="o">((</span><span class="n">button</span><span class="o">.</span><span class="na">edit</span><span class="o">.</span><span class="na">title</span><span class="o">:-</span><span class="nc">Edit</span><span class="o">))</span><span class="s">" theme="</span><span class="n">icon</span> <span class="n">small</span><span class="s">" @click="</span><span class="err">$</span><span class="o">{</span><span class="n">editTheItem</span><span class="o">}</span><span class="s">"&gt; <i class="conum" data-value="2"></i><b>(2)</b>
                     &lt;span class="</span><span class="n">la</span> <span class="n">la</span><span class="o">-</span><span class="n">pen</span><span class="s">"&gt;&lt;/span&gt;
                 &lt;/vaadin-button&gt;
-                &lt;vaadin-button title="</span><span class="err">$</span><span class="o">((</span><span class="n">title</span><span class="o">.</span><span class="na">button</span><span class="o">.</span><span class="na">delete</span><span class="o">:-</span><span class="nc">Delete</span><span class="o">))</span><span class="s">" theme="</span><span class="n">icon</span> <span class="n">small</span><span class="s">" @click="</span><span class="err">$</span><span class="o">{</span><span class="n">removeTheItem</span><span class="o">}</span><span class="s">"&gt;
+                &lt;vaadin-button title="</span><span class="err">$</span><span class="o">((</span><span class="n">button</span><span class="o">.</span><span class="na">delete</span><span class="o">.</span><span class="na">title</span><span class="o">:-</span><span class="nc">Delete</span><span class="o">))</span><span class="s">" theme="</span><span class="n">icon</span> <span class="n">small</span><span class="s">" @click="</span><span class="err">$</span><span class="o">{</span><span class="n">removeTheItem</span><span class="o">}</span><span class="s">"&gt;
                     &lt;span class="</span><span class="n">la</span> <span class="n">la</span><span class="o">-</span><span class="n">trash</span><span class="s">"&gt;&lt;/span&gt;
                 &lt;/vaadin-button&gt;
-                &lt;vaadin-button title="</span><span class="err">$</span><span class="o">((</span><span class="n">title</span><span class="o">.</span><span class="na">button</span><span class="o">.</span><span class="na">star</span><span class="o">:-</span><span class="nc">Add</span> <span class="n">to</span> <span class="n">favorites</span><span class="o">))</span><span class="s">" theme="</span><span class="n">icon</span> <span class="n">small</span><span class="s">" @click="</span><span class="err">$</span><span class="o">{</span><span class="n">starTheItem</span><span class="o">}</span><span class="s">"&gt;
+                &lt;vaadin-button title="</span><span class="err">$</span><span class="o">((</span><span class="n">button</span><span class="o">.</span><span class="na">star</span><span class="o">.</span><span class="na">title</span><span class="o">:-</span><span class="nc">Add</span> <span class="n">to</span> <span class="n">favorites</span><span class="o">))</span><span class="s">" theme="</span><span class="n">icon</span> <span class="n">small</span><span class="s">" @click="</span><span class="err">$</span><span class="o">{</span><span class="n">starTheItem</span><span class="o">}</span><span class="s">"&gt;
                     &lt;vaadin-icon icon="</span><span class="nl">vaadin:</span><span class="n">star</span><span class="s">"&gt;&lt;/vaadin-icon&gt;
                 &lt;/vaadin-button&gt;
             &lt;/vaadin-horizontal-layout&gt;
@@ -1206,9 +1206,9 @@ syntax but this is exactly what Lit uses too, so we have to use something else.<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="properties"><span class="py">personsview.title.button.edit</span> <span class="p">=</span> <span class="s">Edit</span>
-<span class="py">personsview.title.button.delete</span> <span class="p">=</span> <span class="s">Delete</span>
-<span class="py">personsview.title.button.star</span> <span class="p">=</span> <span class="s">Add to favourites.</span><span class="se">\n\n</span><span class="s">The person will be added under "Mates".</span></code></pre>
+<pre class="rouge highlight"><code data-lang="properties"><span class="py">personsview.button.edit.title</span> <span class="p">=</span> <span class="s">Edit</span>
+<span class="py">personsview.button.delete.title</span> <span class="p">=</span> <span class="s">Delete</span>
+<span class="py">personsview.button.star.title</span> <span class="p">=</span> <span class="s">Add to favourites.</span><span class="se">\n\n</span><span class="s">The person will be added under "Mates".</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1216,9 +1216,9 @@ syntax but this is exactly what Lit uses too, so we have to use something else.<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="properties"><span class="py">personsview.title.button.edit</span> <span class="p">=</span> <span class="s">Edit</span>
-<span class="py">personsview.title.button.delete</span> <span class="p">=</span> <span class="s">Remove</span>
-<span class="py">personsview.title.button.star</span> <span class="p">=</span> <span class="s">Add to favorites.</span><span class="se">\n\n</span><span class="s">The person will be added under "Buddies".</span></code></pre>
+<pre class="rouge highlight"><code data-lang="properties"><span class="py">personsview.button.edit.title</span> <span class="p">=</span> <span class="s">Edit</span>
+<span class="py">personsview.button.delete.title</span> <span class="p">=</span> <span class="s">Remove</span>
+<span class="py">personsview.button.star.title</span> <span class="p">=</span> <span class="s">Add to favorites.</span><span class="se">\n\n</span><span class="s">The person will be added under "Buddies".</span></code></pre>
 </div>
 </div>
 </div>
@@ -1284,7 +1284,7 @@ With Spring Boot, you already have Spring&#8217;s <a href="https://docs.spring.i
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-10-27 13:08:51 UTC
+Last updated 2022-11-01 07:19:35 UTC
 </div>
 </div>
 </body>
