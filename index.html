@@ -1094,7 +1094,7 @@ are loaded from an I18NProvider.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="nd">@PageTitle</span><span class="o">(</span><span class="s">"Persons"</span><span class="o">)</span>
 <span class="nd">@Route</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"persons"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TemplatingTheTemplateExample</span> <span class="kd">extends</span> <span class="nc">VerticalLayout</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonsView</span> <span class="kd">extends</span> <span class="nc">VerticalLayout</span> <span class="o">{</span>
 
     <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">I18N_PREFIX</span> <span class="o">=</span> <span class="s">"personsview."</span><span class="o">;</span>
 
@@ -1112,7 +1112,7 @@ are loaded from an I18NProvider.</p>
             &lt;/vaadin-horizontal-layout&gt;
                             """</span><span class="o">;</span>
 
-    <span class="kd">public</span> <span class="nf">TemplatingTheTemplateExample</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">PersonsView</span><span class="o">()</span> <span class="o">{</span>
 
         <span class="nc">StringSubstitutor</span> <span class="n">stringSubstitutor</span> <span class="o">=</span>
                 <span class="k">new</span> <span class="nf">StringSubstitutor</span><span class="o">(</span><span class="k">new</span> <span class="nc">InternationalStringLookup</span><span class="o">(),</span> <span class="s">"$(("</span><span class="o">,</span> <span class="s">"))"</span><span class="o">,</span> <span class="sc">'$'</span><span class="o">);</span> <i class="conum" data-value="3"></i><b>(3)</b>
@@ -1284,7 +1284,7 @@ With Spring Boot, you already have Spring&#8217;s <a href="https://docs.spring.i
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-11-01 07:19:35 UTC
+Last updated 2022-11-01 07:33:10 UTC
 </div>
 </div>
 </body>
